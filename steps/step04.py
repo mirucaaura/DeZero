@@ -7,7 +7,7 @@ class Variable:
 
 
 class Function:
-    def __call__(self, input):
+    def __call__(self, input: Variable) -> Variable:
         x = input.data
         y = self.forward(x)
         output = Variable(y)
