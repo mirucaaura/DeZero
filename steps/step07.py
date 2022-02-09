@@ -5,13 +5,13 @@ class Variable:
     def __init__(self, data) -> None:
         self.data = data
         self.grad = None
-        self.creater = None
+        self.creator = None
 
-    def set_creater(self, func):
-        self.creater = func
+    def set_creator(self, func):
+        self.creator = func
 
     def backward(self):
-        f = self.creater
+        f = self.creator
         if f is not None:
             x = f.input
             x.grad = f.backward(self.grad)
@@ -23,7 +23,7 @@ class Function:
         x = input.data
         y = self.forward(x)
         output = Variable(y)
-        output.set_creater(self)
+        output.set_creator(self)
         self.input = input
         self.output = output
         return output
