@@ -78,6 +78,10 @@ class Add(Function):
         return gy, gy
 
 
+def square(x):
+    return Square()(x)
+
+
 def add(x0, x1):
     return Add()(x0, x1)
 
@@ -89,5 +93,10 @@ print(x.grad)
 
 x = Variable(np.array(3.0))
 y = add(add(x, x), x)
+y.backward()
+print(x.grad)
+
+x = Variable(np.array(10.0))
+y = square(x)
 y.backward()
 print(x.grad)
